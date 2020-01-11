@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 app = Flask(__name__)
+import json
 
 CORS(app)
 
@@ -15,11 +16,16 @@ def hello():
             </script>
             <div onclick='send_ajax()' style='width:100px;height:100px;background-color:red'></div>"""
 
-
 @app.route('/search', methods=['GET'])
 def search():
-    print(request.args['test'])
-    return "search response..."
+    x = {
+      "name": "John",
+      "age": 30,
+      "city": "New York"
+    }
+
+    print(json.dumps(x))
+    return json.dumps(x)
     
 if __name__ == '__main__':
     app.run()
